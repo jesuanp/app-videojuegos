@@ -2,6 +2,7 @@ const { Router } = require('express');
 const axios = require('axios');
 const { key } = require('../config-env/config');
 const { Videogame, Genres, Plataforms } = require('../db.js');
+const { v4: uuidv4 } = require('uuid');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -17,10 +18,15 @@ const router = Router();
 
 //Video juegos:
 router.get('/videogames', async (req, res) => {
-    
-    const games = await axios.get(`https://api.rawg.io/api/games?key=${key}`)
 
-    const prueba = games.data.results.map(e => {
+    const getVideogame = await Videogame.findAll({
+        include: Genres
+    })
+    
+    let games = await axios.get(`https://api.rawg.io/api/games?key=${key}`)
+    games = games.data.results
+
+    games = games.map(e => {
         return {
             id: e.id,
             name: e.name,
@@ -32,9 +38,28 @@ router.get('/videogames', async (req, res) => {
         }
     })
 
-    res.json(prueba)
+    games = games.concat(getVideogame)
+
+    res.json(games)
 })
 
+router.get('/videogames/:videogame', async (req, res) => {
+
+    const { videogame } = req.params;
+
+    try {
+
+        let getVideogame = await axios.get(`https://api.rawg.io/api/games?key=${key}&search=${videogame}`)
+        getVideogame = getVideogame.data.results
+    
+        res.json(getVideogame)
+    }
+    catch(e){
+        res.send(e)
+    }
+
+
+})
 
 //generos:
 router.get('/genres', async (req, res) => {
