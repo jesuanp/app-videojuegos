@@ -13,8 +13,8 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 // GET https://api.rawg.io/api/games
 // GET https://api.rawg.io/api/games?search={game}
-// GET https://api.rawg.io/api/genres
 // GET https://api.rawg.io/api/games/{id}
+// GET https://api.rawg.io/api/genres
 
 //Video juegos:
 router.get('/videogames', async (req, res) => {
@@ -61,14 +61,30 @@ router.get('/videogames/:videogame', async (req, res) => {
 
 })
 
+router.get('/videogames/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    try{
+
+        let gameDetails = await axios.get(`https://api.rawg.io/api/games/${id}?key=${key}`)
+        gameDetails = gameDetails.data;
+    
+        res.json(gameDetails)
+    }
+    catch(e){
+        res.send(e)
+    }
+})
+
 //generos:
 router.get('/genres', async (req, res) => {
 
     try {
-        let genros = await axios.get(`https://api.rawg.io/api/genres?key=${key}`)
-        genros = genros.data.results;
+        let genres = await axios.get(`https://api.rawg.io/api/genres?key=${key}`)
+        genres = genres.data.results;
     
-        const mapGeneros = genros.map(e => {
+        const mapGeneros = genres.map(e => {
             return {
                 id: e.id,
                 name: e.name
@@ -83,7 +99,7 @@ router.get('/genres', async (req, res) => {
                 name: e.name
             })
         });
-    
+
         res.json(mapGeneros)
     }
     catch(e){
@@ -142,3 +158,18 @@ router.get('/plataforms/details', async (req, res) => {
 })
 
 module.exports = router;
+
+
+const getApiById = async (id) => {
+    const resAxios = await axios.get(`https://api.rawg.io/api/games/${id}?key=${YOUR_API_KEY}`);
+    let response = resAxios.data
+        return {
+            id: response.id,
+            name: response.name,
+            // released: result.released,
+            // image: result.background_image,
+            // rating: result.rating,
+            // platforms: result.platforms.map(e => e.platform.name),
+            // genres: result.genres.map(e => e.name),
+        }
+}
