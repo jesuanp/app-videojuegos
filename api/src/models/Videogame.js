@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('plataforms', {
+  sequelize.define('platforms', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
