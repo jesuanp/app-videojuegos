@@ -7,6 +7,7 @@ const { key } = require('../../config-env/config');
 const router = Router()
 
 //agregar un nuevo video juego
+
 router.post('/add', async (req, res) => {
 
     const { name, descripcion, released, rating, background_image, genres, platforms } = req.body;
@@ -15,38 +16,63 @@ router.post('/add', async (req, res) => {
 
         if(name && descripcion && rating && genres){
 
-            let arrGenres = genres.split(',') // "Action, RPG" --> ["Action", "RPG"]
-            let arrPlatforms;
+            var arrGenres = [];
+
+            if(!Array.isArray(genres)){
+
+                arrGenres = genres.split(', ') // "Action, RPG" --> ["Action", "RPG"]
+            }
+
+            const arrgeneros = await Genres.findAll({
+                where: {
+                    name: arrGenres.length > 0 ? arrGenres : genres
+                }
+            })
+
+            var arrPlatforms = [];
             if(platforms){
 
-                arrPlatforms = platforms.split(',')
-            }
-    
-            if(arrGenres.length){
-    
-                let id = uuidv4()
-    
-        
-                const createdGame = await Videogame.create({
-                    id,
-                    name,
-                    descripcion,
-                    released,
-                    rating,
-                    background_image
+                if(!Array.isArray(platforms)){
+
+                    arrPlatforms = platforms.split(', ')
+                }
+
+                var arrplataformas = await Platforms.findAll({
+                    where: {
+                        name: arrPlatforms.length > 0 ? arrPlatforms : platforms
+                    }
                 })
 
-                createdGame.addGenres(arrGenres)
-    
-                if(platforms){
-                    if(arrPlatforms.length){
-
-                        createdGame.addPlatforms(arrPlatforms)
-                    }
-                }
-        
-                return res.json({created: createdGame})
+                if(arrplataformas.length === arrPlatforms.length || arrplataformas.length === platforms.length){
+                    
+                } else res.json({message: "La plataforma ingresada no existe"})
             }
+
+            if(arrgeneros.length === genres.length || arrgeneros.length === arrGenres.length){
+
+                
+                if(arrGenres.length > 0 || genres.length > 0){
+        
+                    let id = uuidv4()
+        
+            
+                    const createdGame = await Videogame.create({
+                        id,
+                        name,
+                        descripcion,
+                        released,
+                        rating,
+                        background_image
+                    })
+                    
+                    createdGame.addPlatforms(arrPlatforms.length > 0 ? arrPlatforms : platforms)
+                    createdGame.addGenres(arrGenres.length > 0 ? arrGenres : genres)
+        
+            
+                    return res.json({created: createdGame})
+                }
+            }
+    
             return res.send('El genero no existe')
         }
         res.status(404).json({message: "Faltan paremetros"})
