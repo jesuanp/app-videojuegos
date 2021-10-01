@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DATEONLY,
     },
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
     background_image: {
@@ -32,14 +32,16 @@ module.exports = (sequelize) => {
   sequelize.define('genres', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     }
   })
 
   sequelize.define('platforms', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     }
   })
 };

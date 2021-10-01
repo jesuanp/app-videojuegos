@@ -21,30 +21,32 @@ const router = Router();
 router.get('/', async (req, res) => {
 
     try {
-        let genres = await axios.get(`https://api.rawg.io/api/genres?key=${key}`)
-        genres = genres.data.results;
 
-        const mapGeneros = genres.map(e => {
-            return {
-                id: e.id,
-                name: e.name
-            }
-        })
+        //Esto comentado es para crear los generos dentro de la base de datos:
+        // let genres = await axios.get(`https://api.rawg.io/api/genres?key=${key}`)
+        // genres = genres.data.results;
+
+        // const mapGeneros = genres.map(e => {
+        //     return {
+        //         id: e.id,
+        //         name: e.name
+        //     }
+        // })
+
+        // mapGeneros.forEach((e) => {
+        //     Genres.findOrCreate({
+        //         where: {
+        //             name: e.name
+        //         }
+        //     })
+        // })
 
         const generes = await Genres.findAll()
-        
-        mapGeneros.forEach((e) => {
-            Genres.findOrCreate({
-                where: {
-                    name: e.name
-                }
-            })
-        })
 
-        res.json(mapGeneros)
+        res.json(generes)
     }
     catch(e){
-        res.send(e)
+        res.status(404).json({message: "No hay generos en la base de datos"})
     }
 
 })
