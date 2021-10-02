@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+/* body{
+  background-image: url('/home/jesuan/Documentos/PI (Proyecto Individual)/PI-Videogames-main/client/src/components/images/2-27534_imagenes-de-minecraft-hd-4k.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+} */
+
+body{
+  background: url('/home/jesuan/Documentos/PI (Proyecto Individual)/PI-Videogames-main/client/src/components/images/1132186.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+p{
+  color: white;
+}

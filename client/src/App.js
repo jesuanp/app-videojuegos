@@ -1,9 +1,13 @@
+import React from 'react';
+import Card from './components/card/Card'
+import Nav from './components/nav/Nav'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Videogames</h1>
+      <Nav />
+      <Card />
     </div>
   );
 }

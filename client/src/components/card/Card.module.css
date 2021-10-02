@@ -1,0 +1,27 @@
+.img{
+    width: 22em;
+    height: 15em;
+}
+
+.card{
+    margin: 1em 0.5em 2em 0.5em;
+}
+
+.cards{
+    margin-top: 5em;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 23em 23em;
+    grid-template-columns: 23em 23em;
+}
+
+@media screen and (max-width: 750px){
+    
+    .cards{
+        margin-top: 5em;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 23em;
+        grid-template-columns: 23em;
+    }
+}
