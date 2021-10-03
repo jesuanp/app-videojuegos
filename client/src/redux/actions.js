@@ -8,6 +8,7 @@ export const obtenerGeneros = "OBTENER_LOS_GENEROS_DE_LA_BASE_DE_DATOS";
 export const obtenerPlataformas = "OBTENER_LAS_PLATAFORMAS_DE_LA_BASE_DE_DATOS";
 export const gameByGenre = "OBTENER_JUEGOS_SOLO_POR_EN_GENERO";
 export const gameByRating = "OBTENER_LOS_JUEGOS_POR_RATING";
+export const alphabeticalOrder = "OBTENER_LOS_JUEGOS_EN_ORDEN_ALFABETICOS";
 
 export function searchGames(){
     return async function(dispatch){
@@ -91,6 +92,17 @@ export function buscarPorRating(descAsc){
         let games = await axios.get('http://localhost:3001/api/videogames')
         return dispatch({
             type: gameByRating,
+            payload: games.data,
+            descAsc: descAsc
+        })
+    }
+}
+
+export function ordenAlfabetico(descAsc){
+    return async function(dispatch){
+        let games = await axios.get('http://localhost:3001/api/videogames')
+        return dispatch({
+            type: alphabeticalOrder,
             payload: games.data,
             descAsc: descAsc
         })

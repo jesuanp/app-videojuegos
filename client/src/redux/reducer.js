@@ -1,6 +1,7 @@
-import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating } from './actions'
+import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating, alphabeticalOrder } from './actions'
 
 const initialStore = {
+    fullGames: [],
     games: [],
     nameGame: [],
     idGame: {},
@@ -8,7 +9,8 @@ const initialStore = {
     genres: [],
     platforms: [],
     gamesFilterByGenre: [],
-    gamesFilterByRating: []
+    gamesFilterByRating: [],
+    orderABC: [],
 }
 
 const reducer = (state=initialStore, action) => {
@@ -20,7 +22,8 @@ const reducer = (state=initialStore, action) => {
                 if(i <= 15){
                     return e
                 }
-            })
+            }),
+            fullGames: action.payload
         }
 
         case buscarPorNombre: return {
@@ -57,22 +60,6 @@ const reducer = (state=initialStore, action) => {
                         return e
                     }
                 }
-
-                // let i = 0;
-                // while(i < e.genres.length){
-                //     if(e.genres[i].name === action.name){
-                //         i++
-                //         return e
-                //     }
-                //     i++
-                // }
-
-                //no funca vvv
-                // return e.genres.filter(el => {
-                //     if(el.name === action.name){
-                //         return e
-                //     }
-                // })
             })
         }
 
@@ -87,6 +74,21 @@ const reducer = (state=initialStore, action) => {
             : action.payload.sort((a, b)=>{
                 if(a.rating < b.rating) return -1;
                 else if (a.rating > b.rating) 1;
+                else return
+            })
+        }
+
+        case alphabeticalOrder: return {
+            ...state,
+            orderABC: action.descAsc === 'Z - A' ?
+            action.payload.sort((a, b)=>{
+                if(a.name > b.name) return -1;
+                else if (a.name < b.name) 1;
+                else return
+            })
+            : action.payload.sort((a, b)=>{
+                if(a.name < b.name) return -1;
+                else if (a.name > b.name) 1;
                 else return
             })
         }

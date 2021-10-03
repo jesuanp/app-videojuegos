@@ -1,10 +1,13 @@
 .img{
-    width: 22em;
-    height: 15em;
+    width: 20em;
+    height: 13em;
 }
 
 .card{
     margin: 1em 0.5em 2em 0.5em;
+    background-color: rgba(0, 0, 0, 0.513);
+    width: 21em;
+    height: 18em;
 }
 
 .cards{
@@ -13,6 +16,16 @@
     justify-content: center;
     grid-template-columns: 23em 23em;
     grid-template-columns: 23em 23em;
+}
+
+.genres{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.genre{
+    margin-left: 1em;
 }
 
 @media screen and (max-width: 750px){

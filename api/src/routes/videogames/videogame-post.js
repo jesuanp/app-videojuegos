@@ -69,7 +69,10 @@ router.post('/add', async (req, res) => {
                     createdGame.addGenres(arrGenres.length > 0 ? arrGenres : genres)
         
             
-                    return res.json({created: createdGame})
+                    return res.json({created: createdGame,
+                        platforms: arrPlatforms.length > 0 ? arrPlatforms : platforms,
+                        genres: arrGenres.length > 0 ? arrGenres : genres
+                    })
                 }
             }
     

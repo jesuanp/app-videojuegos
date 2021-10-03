@@ -19,9 +19,10 @@ function Card({searchVideogames, game, searchGames}){
             {
                 videogames().map(e => <div className={s.card}>
                     <div>
-                    <p>name: {e.name}</p>
+                    <p>{e.name}</p>
                     <p>released: {e.released}</p>
                     <p>rating: {e.rating}</p>
+                    <p className={s.genres}>generos: {e.genres.map(el => <p className={s.genre}>{el.name}</p>)}</p>
                     </div>
                     <div>
                     <img className={s.img} src={e.background_image} alt="videogame image" />

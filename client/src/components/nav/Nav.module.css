@@ -1,0 +1,61 @@
+.input{
+    background: none;
+    outline: none;
+    padding: 0.6em;
+    border: blue solid 2px;
+    border-radius: 0.3em;
+    color: white;
+}
+
+.input:focus{
+    border: rgb(124, 124, 255) solid 2px;
+}
+
+.input:hover{
+    border: rgb(124, 124, 255) solid 2px;
+}
+
+.button{
+    background: blue;
+    padding: 0.75em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+    margin-left: 0.2em;
+    margin-right: 1em;
+}
+
+.button:hover{
+    transition: 50ms;
+    background: rgb(124, 124, 255);
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    background-color: rgb(41, 41, 41);
+    width: 100%;
+    height: 4em;
+}
+
+.link{
+    color: white;
+    margin-left: 1em;
+    text-decoration: none;
+}
+
+.links{
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    left: 1em;
+}
+
+.busqueda{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0.4em;
+}
