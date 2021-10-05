@@ -9,15 +9,18 @@ function TodosLosJuegos({Todos}){
     return(
         <div className={styles.cards}>
             {
-                Todos.map(e => <div className={s.card}>
+                Todos.map(e => <div className={s.card} key={e.id}>
                     <div>
-                    <p>name: {e.name}</p>
-                    <p>released: {e.released}</p>
-                    <p>rating: {e.rating}</p>
-                    <p className={s.genres}>generos: {e.genres.map(el => <p className={s.genre}>{el.name}</p>)}</p>
+                        <p className={s.name}>{e.name}</p>
+                    </div>
+                    <div className={s.cardLow}>
+                        <div className={s.text}>
+                            <p>rating: {e.rating}</p>
+                            <p className={s.genres}><span>genres:</span> {e.genres.map((el, i) => { if(i < 3)return <span className={s.genre} key={e.id}>{el.name}</span>})}</p>
+                        </div>
                     </div>
                     <div>
-                    <img className={s.img} src={e.background_image} alt="videogame image" />
+                        <img className={s.img} src={e.background_image} alt="videogame image" />
                     </div>
                 </div>)
             }

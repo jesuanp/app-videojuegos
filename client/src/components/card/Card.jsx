@@ -1,9 +1,10 @@
 import React, {useEffect} from "react";
 import {connect} from 'react-redux'
-import { searchGames } from '../../redux/actions'
+import { searchGames, gameById } from '../../redux/actions'
+import { NavLink, Link } from 'react-router-dom'
 import s from './Card.module.css'
 
-function Card({searchVideogames, game, searchGames}){
+function Card({searchVideogames, game, searchGames, gameById}){
 
     useEffect(()=>{
         searchGames()
@@ -14,20 +15,32 @@ function Card({searchVideogames, game, searchGames}){
         else return searchVideogames
     }
 
+    // function gameId(){
+    //     gameById()
+    // }
+
     return(
         <div className={s.cards}>
             {
-                videogames().map(e => <div className={s.card}>
-                    <div>
-                    <p>{e.name}</p>
-                    <p>released: {e.released}</p>
-                    <p>rating: {e.rating}</p>
-                    <p className={s.genres}>generos: {e.genres.map(el => <p className={s.genre}>{el.name}</p>)}</p>
-                    </div>
-                    <div>
-                    <img className={s.img} src={e.background_image} alt="videogame image" />
-                    </div>
-                </div>)
+                videogames().map(e => 
+                
+                <div className={s.card} key={e.id} onClick={()=>gameById(e.id)}>
+                    <NavLink to="detalles" className={s.NavLink}>
+                        <div>
+                            <p className={s.name}>{e.name}</p>
+                        </div>
+                        <div className={s.cardLow}>
+                            <div className={s.text}>
+                                <p>rating: {e.rating}</p>
+                                <p className={s.genres}><span>genres:</span> {e.genres.map((el, i) => { if(i < 3)return <span className={s.genre} key={i}>{el.name}</span>})}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <img className={s.img} src={e.background_image} alt="videogame image" />
+                        </div>
+                    </NavLink>
+                </div>
+                )
             }
         </div>
     )
@@ -40,4 +53,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect (mapStateToProps, {searchGames})(Card)
+export default connect (mapStateToProps, {searchGames, gameById})(Card)

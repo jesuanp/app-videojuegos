@@ -4,7 +4,7 @@ const initialStore = {
     fullGames: [],
     games: [],
     nameGame: [],
-    idGame: {},
+    idGame: [],
     database: [],
     genres: [],
     platforms: [],
@@ -33,7 +33,7 @@ const reducer = (state=initialStore, action) => {
 
         case buscarNombrePorId: return {
             ...state,
-            idGame: action.payload
+            idGame: [action.payload]
         }
 
         case dataBase: return {

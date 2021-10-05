@@ -7,7 +7,7 @@ export default function Inicio(){
     return (
         <div className={s.container}>
             <div>
-                <span>Bienvenido!!!</span>
+                <span className={s.span}>Bienvenido!!!</span>
             </div>
             <div>
                 <button className={s.buttonn}>

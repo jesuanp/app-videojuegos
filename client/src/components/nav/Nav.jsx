@@ -18,16 +18,18 @@ function Nav({searchByName}){
     }
 
     return (
-        <nav className={s.nav}>
-            <div className={s.links}>
-                <NavLink to='/videojuegos/home' className={s.link}>home</NavLink>
-                <NavLink to='/videojuegos/todos' className={s.link}>Todos los juegos</NavLink>
-            </div>
-            <div className={s.busqueda}>
-                <input type="text" placeholder='Buscar...' ref={myRef} onChange={input} className={s.input} />
-                <button onClick={()=>searchByName(state)} className={s.button} >Buscar</button>
-            </div>
-        </nav>
+        <div>
+            <nav className={s.nav}>
+                <div className={s.links}>
+                    <NavLink to='/videojuegos/home' className={s.link}>home</NavLink>
+                    <NavLink to='/videojuegos/todos' className={s.link}>Todos los juegos</NavLink>
+                </div>
+                <div className={s.busqueda}>
+                    <input type="text" placeholder='Buscar...' ref={myRef} onChange={input} className={s.input} />
+                   <button onClick={()=>searchByName(state)} className={s.button} > <NavLink to='/videojuegos/home' className={s.linkButton}>Buscar</NavLink></button>
+                </div>
+            </nav>
+        </div>
     )
 }
 
