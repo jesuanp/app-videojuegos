@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {searchByName} from '../../redux/actions'
 import s from './Nav.module.css';
+import logo from '../images/pacman9.gif'
 
 function Nav({searchByName}){
 
@@ -20,6 +21,9 @@ function Nav({searchByName}){
     return (
         <div>
             <nav className={s.nav}>
+                {/* <a href='http://localhost:3000/app/home'>
+                    <img className={s.logo} src={logo} alt='logo not found' />
+                </a> */}
                 <div className={s.links}>
                     <NavLink to='/videojuegos/home' className={s.link}>home</NavLink>
                     <NavLink to='/videojuegos/todos' className={s.link}>Todos los juegos</NavLink>

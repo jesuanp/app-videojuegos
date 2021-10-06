@@ -1,4 +1,4 @@
-import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating, alphabeticalOrder } from './actions'
+import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating, alphabeticalOrder, gameByPlatform } from './actions'
 
 const initialStore = {
     fullGames: [],
@@ -53,7 +53,7 @@ const reducer = (state=initialStore, action) => {
 
         case gameByGenre: return {
             ...state,
-            gamesFilterByGenre: action.payload.filter((e) => {
+            games: action.payload.filter((e) => {
 
                 for(let i = 0; i < e.genres.length; i++){
                     if(e.genres[i].name === action.name){
@@ -80,7 +80,7 @@ const reducer = (state=initialStore, action) => {
 
         case alphabeticalOrder: return {
             ...state,
-            orderABC: action.descAsc === 'Z - A' ?
+            games: action.descAsc === 'Z - A' ?
             action.payload.sort((a, b)=>{
                 if(a.name > b.name) return -1;
                 else if (a.name < b.name) 1;
@@ -90,6 +90,18 @@ const reducer = (state=initialStore, action) => {
                 if(a.name < b.name) return -1;
                 else if (a.name > b.name) 1;
                 else return
+            })
+        }
+
+        case gameByPlatform: return {
+            ...state,
+            games: action.payload.filter((e) => {
+
+                for(let i = 0; i < e.platforms.length; i++){
+                    if(e.platforms[i].platform.name === action.name){
+                        return e
+                    }
+                }
             })
         }
 

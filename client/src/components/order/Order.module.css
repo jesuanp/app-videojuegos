@@ -1,0 +1,25 @@
+.container{
+    margin-top: 7em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.select{
+    color: white;
+    margin: 1em 3em;
+    width: 8em;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+}
+
+.select option{
+    background-color: rgb(22, 22, 22);
+}
+
+.containers{
+    display: flex;
+    flex-direction: column;
+}
+

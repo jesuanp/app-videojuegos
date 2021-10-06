@@ -6,6 +6,7 @@ import TodosLosJuegos from './components/todosLosJuegos/TodosLosJuegos';
 import Inicio from './components/inicio/Inicio'
 import Details from './components/details/Details';
 import Cargando from './components/cargando/Cargando'
+import Order from './components/order/Order';
 import './App.css';
 
 const gif = lazy(()=> import('./components/images/pacman9.gif'))
@@ -29,6 +30,7 @@ function App() {
       </Route>
       <Route exact path="/videojuegos/home">
         <Suspense fallback={<Cargando />}>
+          <Order />
           <Card />
         </Suspense>
       </Route>
