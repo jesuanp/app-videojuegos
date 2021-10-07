@@ -15,7 +15,7 @@ function Details({game}){
                         <p>Lanzamiento:  {e.released}</p>
                         <p>Generos:  {e.genres.map((e, i) => <span key={i}>{e.name}</span>)}</p>
                         <p>Plataformas:  {e.platforms.map((e, i) => <span key={i+100}>{e.platform.name}</span>)}</p>
-                        {e.description}
+                        <p>{e.description}</p>
                     </div>
                 </div>)
             }

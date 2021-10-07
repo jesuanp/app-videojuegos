@@ -11,7 +11,7 @@ export default function Inicio(){
             </div>
             <div>
                 <button className={s.buttonn}>
-                    <NavLink to='/videojuegos/home' className={s.NavLink}>Home</NavLink>
+                    <NavLink to='/app/home' className={s.NavLink}>Home</NavLink>
                 </button>
             </div>
         </div>

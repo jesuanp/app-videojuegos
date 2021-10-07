@@ -1,7 +1,7 @@
 import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating, alphabeticalOrder, gameByPlatform } from './actions'
 
 const initialStore = {
-    fullGames: [],
+    todosLosJuegos: [],
     games: [],
     nameGame: [],
     idGame: [],
@@ -18,17 +18,13 @@ const reducer = (state=initialStore, action) => {
 
         case buscar: return {
             ...state,
-            games: action.payload.filter((e, i) => {
-                if(i <= 15){
-                    return e
-                }
-            }),
-            fullGames: action.payload
+            games: action.payload,
+            todosLosJuegos: action.payload
         }
 
         case buscarPorNombre: return {
             ...state,
-            nameGame: action.payload
+            games: action.payload
         }
 
         case buscarNombrePorId: return {
@@ -38,7 +34,7 @@ const reducer = (state=initialStore, action) => {
 
         case dataBase: return {
             ...state,
-            database: action.payload
+            games: action.arg == 'Si' ? action.payload : state.todosLosJuegos
         }
 
         case obtenerGeneros: return {
@@ -53,7 +49,7 @@ const reducer = (state=initialStore, action) => {
 
         case gameByGenre: return {
             ...state,
-            games: action.payload.filter((e) => {
+            games: state.todosLosJuegos.filter((e) => {
 
                 for(let i = 0; i < e.genres.length; i++){
                     if(e.genres[i].name === action.name){
@@ -65,7 +61,7 @@ const reducer = (state=initialStore, action) => {
 
         case gameByRating: return {
             ...state,
-            gamesFilterByRating: action.descAsc === 'desc' ? 
+            games: action.descAsc === 'Mayor a menor' ? 
             action.payload.sort((a, b)=>{
                 if(a.rating > b.rating) return -1;
                 else if (a.rating < b.rating) 1;
@@ -80,7 +76,7 @@ const reducer = (state=initialStore, action) => {
 
         case alphabeticalOrder: return {
             ...state,
-            games: action.descAsc === 'Z - A' ?
+            games: action.descAsc == 'Z - A' ?
             action.payload.sort((a, b)=>{
                 if(a.name > b.name) return -1;
                 else if (a.name < b.name) 1;
@@ -95,7 +91,7 @@ const reducer = (state=initialStore, action) => {
 
         case gameByPlatform: return {
             ...state,
-            games: action.payload.filter((e) => {
+            games: state.todosLosJuegos.filter((e) => {
 
                 for(let i = 0; i < e.platforms.length; i++){
                     if(e.platforms[i].platform.name === action.name){

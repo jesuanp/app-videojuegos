@@ -5,8 +5,8 @@ import s from '../details/Details.module.css'
 export default function Cargando(){
 
     return (
-        <>
+        <div>
         <img src={image} alt="Cargando" className={s.imgg}/>
-        </>
+        </div>
     )
 }

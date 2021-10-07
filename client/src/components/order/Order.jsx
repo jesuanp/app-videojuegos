@@ -1,13 +1,15 @@
 import React, {useRef} from "react";
 import {connect} from 'react-redux'
-import {ordenAlfabetico, buscarPorGenero, buscarPorPlataforma} from '../../redux/actions';
+import {ordenAlfabetico, buscarPorGenero, buscarPorPlataforma, buscarPorRating, gamesDatabase} from '../../redux/actions';
 import s from './Order.module.css'
 
-function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPorPlataforma}){
+function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPorPlataforma, buscarPorRating, gamesDatabase}){
 
     let miRef = useRef(null);
     let refGenre = useRef(null);
     let refPlatforms = useRef(null);
+    let refRating = useRef(null);
+    let dataBase = useRef(null);
 
     function ordenarAlfabetico(){
         ordenAlfabetico(miRef.current.value)
@@ -21,14 +23,22 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
         buscarPorPlataforma(refPlatforms.current.value)
     }
 
+    function filterOrRating(){
+        buscarPorRating(refRating.current.value)
+    }
+
+    function soloBaseDeDatos(){
+        gamesDatabase(dataBase.current.value)
+    }
+
     return (
         <div className={s.container}>
             <div className={s.containers}>
                 <label>Orden alfabetico</label>
                 <select className={s.select} ref={miRef} onChange={ordenarAlfabetico}>
                     <option disabled selected>Seleccionar</option>
-                    <option value="A - Z">A - Z</option>
-                    <option value="Z - A">Z - A</option>
+                    <option>A - Z</option>
+                    <option>Z - A</option>
                 </select>
             </div>
 
@@ -54,10 +64,19 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
 
             <div className={s.containers}>
                 <label>Filtrar por rating</label>
-                <select className={s.select}>
+                <select className={s.select} ref={refRating} onChange={filterOrRating}>
                     <option disabled selected>Seleccionar</option>
-                    <option value="Asc">Asc</option>
-                    <option value="Desc">Desc</option>
+                    <option>Menor a mayor</option>
+                    <option>Mayor a menor</option>
+                </select>
+            </div>
+
+            <div className={s.containers}>
+                <label>Solo base de dotos</label>
+                <select className={s.select} ref={dataBase} onChange={soloBaseDeDatos}>
+                    <option disabled selected>Seleccionar</option>
+                    <option>Si</option>
+                    <option>No</option>
                 </select>
             </div>
         </div>
@@ -71,4 +90,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect (mapStateToProps, {ordenAlfabetico, buscarPorGenero, buscarPorPlataforma})(Order)
+export default connect (mapStateToProps, {ordenAlfabetico, buscarPorGenero, buscarPorPlataforma, buscarPorRating, gamesDatabase})(Order)

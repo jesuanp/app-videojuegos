@@ -1,14 +1,14 @@
 .img{
-    width: 20em;
-    height: 13em;
+    width: 18em;
+    height: 11em;
 }
 
 .card{
     position: relative;
     margin: 1em 0.5em 2em 0.5em;
     background-color: rgba(0, 0, 0, 0.513);
-    width: 21em;
-    height: 16.47em;
+    width: 19em;
+    height: 14.4em;
     border-radius: 0.3em;
     overflow: hidden;
     transition-property: all;
@@ -16,30 +16,30 @@
 }
 
 .card:hover{
-    transform: scale(1.1);
+    transform: scale(1.13);
     cursor: pointer;
     filter: brightness(70%);
 }
 
 .card:hover .cardLow{
-    transform: translateY(37%);
+    transform: translateY(27%);
 }
 
 .cardLow{
     position: absolute;
     left: 0.48294em;
     background-color: rgba(0, 0, 0, 0.849);
-    width: 20.09em;
+    width: 18.1em;
     height: 18em;
     transition: all 0.5s;
-    transform: translateY(110%);
+    transform: translateY(100%);
 }
 
 .cards{
-    margin-top: 5em;
+    margin: 3em 0em 0em 0em;
     display: grid;
     justify-content: center;
-    grid-template-columns: 23em 23em;
+    grid-template-columns: 21em 21em 21em;
 }
 
 .genres{
@@ -71,13 +71,26 @@
     text-decoration: none;
 }
 
-@media screen and (max-width: 750px){
+.gif{
+    background-color: black;
+    margin-left: 11em;
+}
+
+@media screen and (max-width: 960px){
     
     .cards{
         margin-top: 5em;
         display: grid;
         justify-content: center;
-        grid-template-columns: 23em;
+        grid-template-columns: 23em 23em;
+    }
+}
+
+@media screen and (max-width: 640px){
+    
+    .cards{
+        margin-top: 5em;
+        display: grid;
         grid-template-columns: 23em;
     }
 }

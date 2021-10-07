@@ -25,12 +25,12 @@ function Nav({searchByName}){
                     <img className={s.logo} src={logo} alt='logo not found' />
                 </a> */}
                 <div className={s.links}>
-                    <NavLink to='/videojuegos/home' className={s.link}>home</NavLink>
-                    <NavLink to='/videojuegos/todos' className={s.link}>Todos los juegos</NavLink>
+                    <NavLink to='/app/home' className={s.link}>Home</NavLink>
+                    <NavLink to='/app/post' className={s.link}>Agregar un juego</NavLink>
                 </div>
                 <div className={s.busqueda}>
                     <input type="text" placeholder='Buscar...' ref={myRef} onChange={input} className={s.input} />
-                   <button onClick={()=>searchByName(state)} className={s.button} > <NavLink to='/videojuegos/home' className={s.linkButton}>Buscar</NavLink></button>
+                   <button onClick={()=>searchByName(state)} className={s.button} >Buscar</button>
                 </div>
             </nav>
         </div>

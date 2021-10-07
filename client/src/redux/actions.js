@@ -47,12 +47,13 @@ export function gameById(id){
     }
 }
 
-export function gamesDatabase(){
+export function gamesDatabase(arg){
     return async function(dispatch){
         let database = await axios.get('http://localhost:3001/api/videogames/database')
         return dispatch({
             type: dataBase,
-            payload: database.data
+            payload: database.data,
+            arg: arg
         })
     }
 }
@@ -79,10 +80,10 @@ export function getPlatforms(){
 
 export function buscarPorGenero(name){
     return async function(dispatch){
-        let games = await axios.get('http://localhost:3001/api/videogames')
+        // let games = await axios.get('http://localhost:3001/api/videogames')
         return dispatch({
             type: gameByGenre,
-            payload: games.data,
+            // payload: games.data,
             name: name
         })
     }
