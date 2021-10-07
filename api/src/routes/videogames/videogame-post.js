@@ -12,7 +12,7 @@ router.post('/add', async (req, res) => {
 
     const { name, descripcion, released, rating, background_image, genres, platforms } = req.body;
 
-    try {
+    // try {
 
         if(name && descripcion && rating && genres){
 
@@ -69,20 +69,20 @@ router.post('/add', async (req, res) => {
                     createdGame.addGenres(arrGenres.length > 0 ? arrGenres : genres)
         
             
-                    return res.json({created: createdGame,
+                    return res.json({message: createdGame,
                         platforms: arrPlatforms.length > 0 ? arrPlatforms : platforms,
                         genres: arrGenres.length > 0 ? arrGenres : genres
                     })
                 }
             }
     
-            return res.send('El genero no existe')
+            return res.status(404).json({message: "El genero no existe"})
         }
         res.status(404).json({message: "Faltan paremetros"})
-    }
-    catch(e){
-        res.status(404).json({error: e})
-    }
+    // }
+    // catch(e){
+    //     res.status(404).json({error: e})
+    // }
 })
 
 router.post('/addgenres', async (req, res) => {

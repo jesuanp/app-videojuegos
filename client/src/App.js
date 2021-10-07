@@ -6,7 +6,7 @@ import Inicio from './components/inicio/Inicio'
 import Details from './components/details/Details';
 import Cargando from './components/cargando/Cargando'
 import Order from './components/order/Order';
-import Post from './components/post/Post';
+import Form from './components/form/Form';
 import './App.css';
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
 
       <Route exact path="/app/post">
         <Suspense>
-          <Post />
+          <Form />
         </Suspense>
       </Route>
 

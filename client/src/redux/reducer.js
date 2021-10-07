@@ -1,4 +1,4 @@
-import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating, alphabeticalOrder, gameByPlatform } from './actions'
+import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating, alphabeticalOrder, gameByPlatform, postSubmit } from './actions'
 
 const initialStore = {
     todosLosJuegos: [],
@@ -8,9 +8,7 @@ const initialStore = {
     database: [],
     genres: [],
     platforms: [],
-    gamesFilterByGenre: [],
-    gamesFilterByRating: [],
-    orderABC: [],
+    resPost: []
 }
 
 const reducer = (state=initialStore, action) => {
@@ -99,6 +97,11 @@ const reducer = (state=initialStore, action) => {
                     }
                 }
             })
+        }
+
+        case postSubmit: return {
+            ...state,
+            resPost: action.postgame
         }
 
         default: return state;

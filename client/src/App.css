@@ -44,7 +44,7 @@
 } */
 
 body{
-  background: url('/home/jesuan/Documentos/PI (Proyecto Individual)/PI-Videogames-main/client/src/components/images/1132186.jpg') no-repeat center center fixed;
+  background: url('./components/images/1132186.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -10,6 +10,7 @@ export const gameByGenre = "OBTENER_JUEGOS_SOLO_POR_EN_GENERO";
 export const gameByRating = "OBTENER_LOS_JUEGOS_POR_RATING";
 export const alphabeticalOrder = "OBTENER_LOS_JUEGOS_EN_ORDEN_ALFABETICOS";
 export const gameByPlatform = "OBTENER_LOS_JUEGOS_DE_DICHA_PLATAFORMA";
+export const postSubmit = "HACE_EL_POST_A_LA_BASE_DE_DATOS";
 
 export function searchGames(){
     return async function(dispatch){
@@ -119,5 +120,16 @@ export function buscarPorPlataforma(name){
             payload: games.data,
             name: name
         })
+    }
+}
+
+export function submitPost(datos){
+    return async function(){
+        let postgame = await axios.post('http://localhost:3001/api/videogame/add', datos)
+        console.log(postgame.data)
+        return {
+            type: postSubmit,
+            postgame: postgame.data
+        }
     }
 }
