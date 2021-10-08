@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {connect} from 'react-redux'
 import { searchGames, gameById, getGenres, getPlatforms } from '../../redux/actions'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import gif from '../images/obojrz5.gif'
 import s from './Card.module.css'
 import Paginado from '../paginado/Paginado';
 
 
-function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlatforms}){
+function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlatforms, pagina}){
 
     const [currentPage, setCurrentPage] = useState(1)
     const [totalVideogames, setTotalVideogames] = useState(15)
@@ -16,14 +16,26 @@ function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlat
 
     let games = searchVideogames.slice(currentPage*totalVideogames-15, currentPage*totalVideogames)
 
+    let myHistory = useHistory()
+
+    if(currentPage === 1){
+        myHistory.push(`/app/home/${currentPage}`)
+    }
+
+    let actualPage;
+
     function pages(num){
         setCurrentPage(num)
+        myHistory.push(`/app/home/${num}`)
     }
 
     useEffect(()=>{
-        searchGames()
-        getGenres()
-        getPlatforms()
+        if(!games.length){
+            searchGames()
+            getGenres()
+            getPlatforms()
+        }
+        pagina = 2
     }, [])
 
     const scrollUp = () => {
@@ -41,7 +53,7 @@ function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlat
                 games.length ? games.map(e => 
                 
                 <div className={s.card} key={e.id} onClick={()=>gameById(e.id)}>
-                    <NavLink to="detalles" className={s.NavLink} onClick={scrollUp}>
+                    <NavLink to="/app/detalles" className={s.NavLink} onClick={scrollUp}>
                         <div>
                             <p className={s.name}>{e.name}</p>
                         </div>
@@ -62,7 +74,7 @@ function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlat
             }
             
         </div>
-        <Paginado searchVideogames={searchVideogames} totalVideogames={totalVideogames} pages={pages}/>
+        <Paginado searchVideogames={searchVideogames} totalVideogames={totalVideogames} pages={pages} currentPage={currentPage}/>
         </>
     )
 }

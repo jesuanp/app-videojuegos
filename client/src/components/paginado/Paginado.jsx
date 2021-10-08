@@ -1,7 +1,7 @@
 import React from "react";
 import s from './Paginado.module.css';
 
-export default function Paginado({pages, searchVideogames, totalVideogames}){
+export default function Paginado({pages, searchVideogames, totalVideogames, currentPage}){
 
     let arrPages = [];
 
@@ -19,15 +19,30 @@ export default function Paginado({pages, searchVideogames, totalVideogames}){
         }
     }
 
-    // const handleClick = () => {
-    //     scrollUp()
+    const handleClick = (el) => {
+        if(el === total){
+            pages(el+1)
+            scrollUp()
+        }
+        if(el+1 === 1){
+            pages(el+1)
+            scrollUp()
+        }
+    }
 
-    // }
+    function unoUOtro(i){
+        if(i == total) return "-->";
+        if(i+1 == 1) return "<--";
+        return "..."
+    }
 
     return (
         <div>
                 {
-                   arrPages && arrPages.map(e => <button onClick={()=>{pages(e+1);  scrollUp()}} className={s.btn}>pagina {e+1}</button>)
+                   arrPages && arrPages.map((e, i) => i==currentPage || i+1==currentPage || i+2==currentPage?<button onClick={()=>{
+                    pages(e+1);  scrollUp()
+                    }} 
+                    className={s.btn}>pagina {e+1}</button>: <button className={s.btn} onClick={()=>handleClick(i)}>{unoUOtro(i)}</button>)
                 }
         </div>
     )

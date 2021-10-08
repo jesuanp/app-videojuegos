@@ -46,6 +46,7 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
                 <label>Filtrar por genero</label>
                 <select className={s.select} ref={refGenre} onChange={filterOrGenre}>
                     <option disabled selected>Seleccionar</option>
+                    <option>Todos</option>
                     {
                         generos.map(e => <option>{e.name}</option>)
                     }
@@ -56,6 +57,7 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
                 <label>Filtrar por plataforma</label>
                 <select className={s.select} ref={refPlatforms} onChange={filterOrPlatforms}>
                     <option disabled selected>Seleccionar</option>
+                    <option>Todos</option>
                     {
                         plataformas.map(e => <option>{e.name}</option>)
                     }

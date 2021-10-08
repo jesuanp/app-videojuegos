@@ -101,12 +101,18 @@ router.get('/', async (req, res) => {
                 released: e.released,
                 rating: e.rating,
                 background_image: e.background_image,
-                platforms: e.platforms,
+                platforms: e.platforms.map(el => {
+                    return {
+                        name: el.platform.name
+                    }
+                }),
                 genres: e.genres
             }
         })
     
-        games = games.concat(getVideogame)
+        /*games = games.concat(getVideogame)*/
+
+        games = [...getVideogame, ...games]
     
         res.json(games)
     }

@@ -12,9 +12,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    descripcion: {
+    description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: false
     },
     released: {
       type: DataTypes.DATEONLY,

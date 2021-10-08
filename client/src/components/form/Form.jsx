@@ -4,7 +4,7 @@ import s from './Form.module.css';
 import { connect } from "react-redux";
 import {submitPost} from "../../redux/actions";
 
-function Form({submitPost, genres, platforms}){
+function Form({submitPost, genres, platforms, resPost}){
 
     const [state, setState] = useState({
         name: '',
@@ -13,7 +13,7 @@ function Form({submitPost, genres, platforms}){
         background_image: '',
         genres: [],
         platforms: [],
-        descripcion: ''
+        description: ''
     })
 
     function handleChange(e){
@@ -49,13 +49,37 @@ function Form({submitPost, genres, platforms}){
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(state.name == ''){
+            return alert("Falta el nombre")
+        }
+        if(state.released == ''){
+            return alert("Falta la fecha de lanzamiento de juego")
+        }
+        if(state.rating == 0 || state.rating == '' || state.rating < 1 || state.rating > 5){
+            return alert("El rating debe ser entre 1 y 5")
+        }
+        if(state.background_image == ''){
+            return alert("Falta la imagen")
+        }
+        if(state.description == '' || state.description.length < 15){
+            if(state.description == '') return alert("Falta la descripcióin")
+            if(state.description.length < 15) return alert("La descripcióin debe tener al menos 15 caracteres")
+        }
+        if(state.genres == ''){
+            return alert("Faltan los generos")
+        }
+        if(state.platforms == ''){
+            return alert("Faltan las plataformas")
+        }
+
         await submitPost(state)
-        console.log(state)
+        return alert("Juego Agregado")
     }
 
     return (
         <div className={s.containerFather}>
-            <button className={s.btnVolver}><NavLink to='/app/home'>Volver</NavLink></button>
+            <button className={s.btnVolver}><NavLink to='/app/home/1'>Volver</NavLink></button>
             <form onSubmit={(e)=>handleSubmit(e)}>
                 
                 <div className={s.container}>
@@ -85,27 +109,32 @@ function Form({submitPost, genres, platforms}){
                     </div>
 
                     <div className={s.genres}>
-                        <label>Generos del juego</label>
+                        <label>Generos del juego</label><br/>
                         {
                             genres && genres.map(e => <div><input type="checkbox" name="genres" onChange={(evt)=>handleGenres(evt)} value={e.name} /><label>{e.name}</label></div>)
                         }
                     </div>
 
                     <div className={s.platforms}>
+                        <label>Plataformas</label><br/>
                         {
                             platforms && platforms.map(e => <div><input type="checkbox" name="platforms" onChange={(evt)=>handlePlatforms(evt)} value={e.name} /><label>{e.name}</label></div>)
                         }
                     </div>
 
-                    <div className={s.descripcion}>
+                    <div className={s.description}>
                         <label>Descripción</label>
-                        <textarea type="text" name="descripcion" cols="40" rows="6" className={s.input} onChange={(e)=>handleChange(e)} />
+                        <textarea type="text" name="description" cols="40" rows="6" className={s.input} onChange={(e)=>handleChange(e)} />
                     </div>
 
-                    <div className={s.info}><p>Info para agregar un juego</p></div>
+                    <div className={s.info}>
+                        <p>Info para agregar un juego</p><br/>
+                        <p>El Rating: tiene que ser del 1 al 5</p><br/>
+                        <p>Imagen: Para que la imagen se pueda ver, hay que copiar una url de google imagenes</p>
+                    </div>
 
+                <button type='submit' className={s.button} >Enviar</button>
                 </div>
-                <button type='submit' className={s.button} />
 
             </form>
         </div>

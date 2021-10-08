@@ -22,7 +22,7 @@ const reducer = (state=initialStore, action) => {
 
         case buscarPorNombre: return {
             ...state,
-            games: action.payload
+            games: action.payload == null ? state.todosLosJuegos : action.payload
         }
 
         case buscarNombrePorId: return {
@@ -47,7 +47,7 @@ const reducer = (state=initialStore, action) => {
 
         case gameByGenre: return {
             ...state,
-            games: state.todosLosJuegos.filter((e) => {
+            games: action.name == "Todos" ? [...state.todosLosJuegos] : state.todosLosJuegos.filter((e) => {
 
                 for(let i = 0; i < e.genres.length; i++){
                     if(e.genres[i].name === action.name){
@@ -89,12 +89,14 @@ const reducer = (state=initialStore, action) => {
 
         case gameByPlatform: return {
             ...state,
-            games: state.todosLosJuegos.filter((e) => {
+            games: action.name == "Todos" ? [...state.todosLosJuegos] : state.todosLosJuegos.filter((e) => {
 
                 for(let i = 0; i < e.platforms.length; i++){
-                    if(e.platforms[i].platform.name === action.name){
+
+                    if(e.platforms[i].name === action.name){
                         return e
                     }
+
                 }
             })
         }

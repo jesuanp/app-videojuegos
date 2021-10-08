@@ -33,7 +33,7 @@ export function searchByName(name){
         }
         return dispatch({
             type: buscarPorNombre,
-            payload: []
+            payload: null
         })
     }
 }
@@ -104,6 +104,7 @@ export function buscarPorRating(descAsc){
 export function ordenAlfabetico(descAsc){
     return async function(dispatch){
         let games = await axios.get('http://localhost:3001/api/videogames')
+        console.log(games.data)
         return dispatch({
             type: alphabeticalOrder,
             payload: games.data,

@@ -2,6 +2,7 @@ import React, {lazy, Suspense} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Card from './components/card/Card';
 import Nav from './components/nav/Nav';
+import InputSearch from './components/nav/InputSearch';
 import Inicio from './components/inicio/Inicio'
 import Details from './components/details/Details';
 import Cargando from './components/cargando/Cargando'
@@ -20,9 +21,10 @@ function App() {
         </Suspense>
       </Route>
 
-      <Route exact path="/app/home">
+      <Route exact path="/app/home/:pagina">
         <Suspense>
           <Nav />
+          <InputSearch />
           <Order />
           <Card />
         </Suspense>
@@ -30,12 +32,14 @@ function App() {
 
       <Route exact path="/app/detalles">
         <Suspense>
+          <Nav />
           <Details />
         </Suspense>
       </Route>
 
       <Route exact path="/app/post">
         <Suspense>
+          <Nav />
           <Form />
         </Suspense>
       </Route>

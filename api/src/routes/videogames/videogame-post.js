@@ -10,11 +10,11 @@ const router = Router()
 
 router.post('/add', async (req, res) => {
 
-    const { name, descripcion, released, rating, background_image, genres, platforms } = req.body;
+    const { name, description, released, rating, background_image, genres, platforms } = req.body;
 
     // try {
 
-        if(name && descripcion && rating && genres){
+        if(name && description && rating && genres){
 
             var arrGenres = [];
 
@@ -59,7 +59,7 @@ router.post('/add', async (req, res) => {
                     const createdGame = await Videogame.create({
                         id,
                         name,
-                        descripcion,
+                        description,
                         released,
                         rating,
                         background_image
