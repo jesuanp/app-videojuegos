@@ -182,7 +182,7 @@ router.get('/:id', async (req, res) => {
                 released: data.released,
                 background_image: data.background_image,
                 rating: data.rating,
-                description: data.description,
+                description: data.description.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/<br \/>/g, ""),
                 genres: data.genres,
                 platforms: data.platforms
             }

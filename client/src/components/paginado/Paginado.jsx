@@ -23,16 +23,24 @@ export default function Paginado({pages, searchVideogames, totalVideogames, curr
         if(el === total){
             pages(el+1)
             scrollUp()
+            return
         }
         if(el+1 === 1){
             pages(el+1)
             scrollUp()
+            return
+        }
+        if(el+1 <= total){
+            pages(el+1)
+            scrollUp()
+            return
         }
     }
 
     function unoUOtro(i){
         if(i == total) return "-->";
         if(i+1 == 1) return "<--";
+
         return "..."
     }
 

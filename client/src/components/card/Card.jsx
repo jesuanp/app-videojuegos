@@ -7,12 +7,10 @@ import s from './Card.module.css'
 import Paginado from '../paginado/Paginado';
 
 
-function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlatforms, pagina}){
+function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlatforms, pagina, genres, platforms}){
 
     const [currentPage, setCurrentPage] = useState(1)
     const [totalVideogames, setTotalVideogames] = useState(15)
-
-    const totalPages = Math.ceil(searchVideogames / totalVideogames)
 
     let games = searchVideogames.slice(currentPage*totalVideogames-15, currentPage*totalVideogames)
 
@@ -32,9 +30,10 @@ function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlat
     useEffect(()=>{
         if(!games.length){
             searchGames()
-            getGenres()
             getPlatforms()
         }
+        if(!genres.length) getGenres();
+        if(!platforms.length) getPlatforms();
         pagina = 2
     }, [])
 
@@ -82,7 +81,9 @@ function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlat
 const mapStateToProps = (store) => {
     return {
         searchVideogames: store.games,
-        game: store.nameGame
+        game: store.nameGame,
+        genres: store.genres,
+        platforms: store.platforms
     }
 }
 

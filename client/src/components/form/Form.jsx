@@ -1,10 +1,12 @@
-import React, {useState} from "react";
-import { NavLink } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import s from './Form.module.css';
 import { connect } from "react-redux";
-import {submitPost} from "../../redux/actions";
+import {submitPost, getGenres, getPlatforms} from "../../redux/actions";
 
-function Form({submitPost, genres, platforms, resPost}){
+function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms}){
+
+    let myHistory = useHistory()
 
     const [state, setState] = useState({
         name: '',
@@ -16,12 +18,17 @@ function Form({submitPost, genres, platforms, resPost}){
         description: ''
     })
 
+    function handleImg(e){
+        setState({...state,
+        background_image: state.background_image.length ? e.target.value : "https://www.eleconomista.com.mx/__export/1581119523386/sites/eleconomista/img/2020/02/07/que-son-esports.jpg"
+        })
+    }
+
     function handleChange(e){
         setState({
             ...state,
             [e.target.name]: e.target.value
         })
-        console.log(state)
     }
 
     function handleRating(e){
@@ -36,7 +43,6 @@ function Form({submitPost, genres, platforms, resPost}){
             ...state,
             genres: state.genres.includes(e.target.value) ? state.genres.filter(el => el !== e.target.value) : state.genres.concat(e.target.value)
         })
-        console.log(state)
     }
 
     function handlePlatforms(e){
@@ -44,7 +50,6 @@ function Form({submitPost, genres, platforms, resPost}){
             ...state,
             platforms: state.platforms.includes(e.target.value) ? state.platforms.filter(el => el !== e.target.value) : state.platforms.concat(e.target.value)
         })
-        console.log(state)
     }
 
     const handleSubmit = async (e) => {
@@ -56,14 +61,11 @@ function Form({submitPost, genres, platforms, resPost}){
         if(state.released == ''){
             return alert("Falta la fecha de lanzamiento de juego")
         }
-        if(state.rating == 0 || state.rating == '' || state.rating < 1 || state.rating > 5){
+        if(state.rating == 0 || state.rating == '' || state.rating < 1 || state.rating > 5 || !Number(state.rating) || state.rating == NaN){
             return alert("El rating debe ser entre 1 y 5")
         }
-        if(state.background_image == ''){
-            return alert("Falta la imagen")
-        }
         if(state.description == '' || state.description.length < 15){
-            if(state.description == '') return alert("Falta la descripcióin")
+            if(state.description == '') return alert("Falta la descripción")
             if(state.description.length < 15) return alert("La descripcióin debe tener al menos 15 caracteres")
         }
         if(state.genres == ''){
@@ -74,8 +76,15 @@ function Form({submitPost, genres, platforms, resPost}){
         }
 
         await submitPost(state)
+        myHistory.push("/app/home/1")
         return alert("Juego Agregado")
     }
+
+    useEffect(()=>{
+        if(!genres.length) getGenres();
+        if(!platforms.length) getPlatforms();
+
+    })
 
     return (
         <div className={s.containerFather}>
@@ -99,13 +108,13 @@ function Form({submitPost, genres, platforms, resPost}){
 
                     <div className={s.rating}>
                         <label>Rating</label>
-                        <input type="number" name="rating" className={s.input} onChange={(e)=>handleRating(e)} />
+                        <input type="text" name="rating" className={s.input} onChange={(e)=>handleRating(e)} />
                     </div>
 
 
                     <div className={s.image}>
                         <label>URl de la imagen</label>
-                        <input type="url" name="background_image" className={s.input} onChange={(e)=>handleChange(e)} />
+                        <input type="url" name="background_image" className={s.input} onChange={(e)=>handleImg(e)} />
                     </div>
 
                     <div className={s.genres}>
@@ -149,4 +158,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect(mapStateToProps, {submitPost})(Form)
+export default connect(mapStateToProps, {submitPost, getGenres, getPlatforms})(Form)

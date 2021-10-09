@@ -12,7 +12,7 @@ router.post('/add', async (req, res) => {
 
     const { name, description, released, rating, background_image, genres, platforms } = req.body;
 
-    // try {
+    try {
 
         if(name && description && rating && genres){
 
@@ -79,10 +79,10 @@ router.post('/add', async (req, res) => {
             return res.status(404).json({message: "El genero no existe"})
         }
         res.status(404).json({message: "Faltan paremetros"})
-    // }
-    // catch(e){
-    //     res.status(404).json({error: e})
-    // }
+    }
+    catch(e){
+        res.status(404).json({error: e})
+    }
 })
 
 router.post('/addgenres', async (req, res) => {

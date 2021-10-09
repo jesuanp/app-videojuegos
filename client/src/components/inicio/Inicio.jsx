@@ -10,8 +10,8 @@ export default function Inicio(){
                 <span className={s.span}>Bienvenido!!!</span>
             </div>
             <div>
-                <button className={s.buttonn}>
-                    <NavLink to='/app/home' className={s.NavLink}>Home</NavLink>
+                <button className={s.button}>
+                    <NavLink to='/app/home/1' className={s.NavLink}>Home</NavLink>
                 </button>
             </div>
         </div>
