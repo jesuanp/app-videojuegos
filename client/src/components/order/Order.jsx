@@ -48,7 +48,7 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
                     <option disabled selected>Seleccionar</option>
                     <option>Todos</option>
                     {
-                        generos.map(e => <option>{e.name}</option>)
+                        generos.map((e, i) => <option key={i}>{e.name}</option>)
                     }
                 </select>
             </div>
@@ -59,7 +59,7 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
                     <option disabled selected>Seleccionar</option>
                     <option>Todos</option>
                     {
-                        plataformas.map(e => <option>{e.name}</option>)
+                        plataformas.map((e, i) => <option key={i}>{e.name}</option>)
                     }
                 </select>
             </div>

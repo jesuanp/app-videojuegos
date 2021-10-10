@@ -24,8 +24,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     background_image: {
-      type: DataTypes.TEXT,
-      allowNull: true
+      type: DataTypes.TEXT
     }
   });
 

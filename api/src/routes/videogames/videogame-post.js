@@ -12,7 +12,7 @@ router.post('/add', async (req, res) => {
 
     const { name, description, released, rating, background_image, genres, platforms } = req.body;
 
-    try {
+    // try {
 
         if(name && description && rating && genres){
 
@@ -54,11 +54,12 @@ router.post('/add', async (req, res) => {
                 if(arrGenres.length > 0 || genres.length > 0){
         
                     let id = uuidv4()
-        
+
+                    let newName = name[0].toUpperCase()+name.slice(1)
             
                     const createdGame = await Videogame.create({
                         id,
-                        name,
+                        name: newName,
                         description,
                         released,
                         rating,
@@ -79,10 +80,10 @@ router.post('/add', async (req, res) => {
             return res.status(404).json({message: "El genero no existe"})
         }
         res.status(404).json({message: "Faltan paremetros"})
-    }
-    catch(e){
-        res.status(404).json({error: e})
-    }
+    // }
+    // catch(e){
+    //     res.status(404).json({error: e})
+    // }
 })
 
 router.post('/addgenres', async (req, res) => {

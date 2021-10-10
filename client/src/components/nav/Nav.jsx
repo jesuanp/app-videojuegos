@@ -1,5 +1,4 @@
 import React, {useRef, useState} from "react";
-import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
 // import {searchByName} from '../../redux/actions'
 import s from './Nav.module.css';
@@ -7,14 +6,23 @@ import s from './Nav.module.css';
 
 export default function Nav(){
 
-    
+    const scrollUp = () => {
+        let currentScroll = document.documentElement.scrollTop;
+        if (currentScroll > 0) {
+            window.requestAnimationFrame(scrollUp)
+            window.scrollTo (0, currentScroll - (currentScroll / 1));
+        }
+    }    
 
     return (
         <div>
             <nav className={s.nav}>
                 <div className={s.links}>
-                    <NavLink to='/app/home/1' className={s.link}>Home</NavLink>
-                    <NavLink to='/app/post' className={s.link}>Agregar un juego</NavLink>
+                    <NavLink to='/app/home/1' onClick={scrollUp} className={s.link}>Home</NavLink>
+                </div>
+
+                <div className={s.links}>
+                    <NavLink to='/app/post' onClick={scrollUp} className={s.link}>Agregar un juego</NavLink>
                 </div>
             </nav>
             

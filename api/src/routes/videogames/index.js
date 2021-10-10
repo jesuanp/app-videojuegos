@@ -42,7 +42,7 @@ router.get('/', async (req, res, next) => {
                 getVideogame = {message: "juego no encontrado"}
             }
 
-            getVideogame = getVideogame.concat(games)
+            getVideogame = games.concat(getVideogame)
 
             res.json(getVideogame)
         }
@@ -184,7 +184,7 @@ router.get('/:id', async (req, res) => {
                 rating: data.rating,
                 description: data.description.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/<br \/>/g, ""),
                 genres: data.genres,
-                platforms: data.platforms
+                platforms: data.platforms.map(e => e.platform)
             }
             
         return res.send(gameDetails);

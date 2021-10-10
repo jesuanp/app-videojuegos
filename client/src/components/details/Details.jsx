@@ -9,14 +9,15 @@ function Details({game}){
             {
                 game && game.map(e => 
                 <div key={e.id} className={s.map}>
-                    <div className={s.texts} >
                         <h1>{e.name}</h1>
-                        <p>Rating:  {e.rating}</p>
-                        <p>Lanzamiento:  {e.released}</p>
-                        <p>Generos:  {e.genres.map((e, i) => <span key={i}>{e.name}</span>)}</p>
-                        <p>Plataformas:  {e.platforms.platform ? e.platforms.map((e, i) => <span key={i+100}>{e.platform.name}</span>) : e.platforms.map((e, i) => <span key={i+100}>{e.name}</span>)}</p>
-                        <p>{e.description}</p>
+                    <div className={s.texts}>
+                            <p><span>Rating:</span>  {e.rating}</p>
+                            <p><span>Lanzamiento:</span>  {e.released}</p>
+                            <p><span>Generos:</span>  {e.genres.map((e, i) => <span key={i}>{e.name}</span>)}</p>
+                            <p><span>Plataformas:</span>  {e.platforms.map((e, i) => <span key={i+100}>{e.name}</span>)}</p>
+                            
                     </div>
+                    <p className={s.description}>Descripción:  {e.description}</p>
                 </div>)
             }
             <div className={s.fondos}>

@@ -18,12 +18,13 @@
 .button{
     position: relative;
     background: blue;
-    padding: 0.75em 1.5em;
+    padding: 0.75em 1em;
     border: none;
     border-radius: 0.3em;
     cursor: pointer;
     margin-left: 0.2em;
     margin-right: 1em;
+    color: white;
 }
 
 .linkButton{
@@ -43,6 +44,7 @@
 .nav{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: fixed;
     top: 0px;
     background-color: rgb(41, 41, 41);
@@ -60,8 +62,6 @@
 
 .links{
     display: flex;
-    position: absolute;
-    left: 38%;
 }
 
 .busqueda{

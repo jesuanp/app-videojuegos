@@ -12,15 +12,18 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
         name: '',
         released: '',
         rating: 0,
-        background_image: '',
+        background_image: null,
         genres: [],
         platforms: [],
         description: ''
     })
 
     function handleImg(e){
+        if(state.background_image === null){
+            e.target.value = null
+        }
         setState({...state,
-        background_image: state.background_image.length ? e.target.value : "https://www.eleconomista.com.mx/__export/1581119523386/sites/eleconomista/img/2020/02/07/que-son-esports.jpg"
+        background_image: e.target.value
         })
     }
 
@@ -63,6 +66,11 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
         }
         if(state.rating == 0 || state.rating == '' || state.rating < 1 || state.rating > 5 || !Number(state.rating) || state.rating == NaN){
             return alert("El rating debe ser entre 1 y 5")
+        }
+        if(state.background_image !== null){
+            if(state.background_image.slice(state.background_image.length-3) !== 'jpg'){
+                return alert("La imagen tiene que ser jpg")
+            }
         }
         if(state.description == '' || state.description.length < 15){
             if(state.description == '') return alert("Falta la descripción")
