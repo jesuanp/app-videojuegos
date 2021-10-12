@@ -19,9 +19,6 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
     })
 
     function handleImg(e){
-        if(state.background_image === null){
-            e.target.value = null
-        }
         setState({...state,
         background_image: e.target.value
         })
@@ -141,7 +138,7 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
 
                     <div className={s.description}>
                         <label>Descripción</label>
-                        <textarea type="text" name="description" cols="40" rows="6" className={s.input} onChange={(e)=>handleChange(e)} />
+                        <textarea type="text" name="description" cols="48" rows="6" className={s.input} onChange={(e)=>handleChange(e)} />
                     </div>
 
                     <div className={s.info}>

@@ -81,24 +81,14 @@
 
 .gif{
     background-color: black;
-    margin-left: 11em;
+    margin-left: 19em;
 }
 
-/* @media screen and (max-width: 960px){
-    
-    .cards{
-        margin-top: 5em;
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 23em 23em;
+@media screen and (max-widht: 500px) {
+    .gif{
+        background-color: black;
+        margin: 0em;
+        position: absolute;
+        left: 0px;
     }
 }
-
-@media screen and (max-width: 640px){
-    
-    .cards{
-        margin-top: 5em;
-        display: grid;
-        grid-template-columns: 23em;
-    }
-} */
