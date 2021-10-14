@@ -10,7 +10,8 @@ import Paginado from '../paginado/Paginado';
 function Card({searchVideogames, searchGames, gameById, getGenres, getPlatforms, pagina, genres, platforms}){
 
     const [currentPage, setCurrentPage] = useState(1)
-    const [totalVideogames, setTotalVideogames] = useState(15)
+
+    const totalVideogames = 15
     
     let games = searchVideogames.slice(currentPage*totalVideogames-15, currentPage*totalVideogames)
 

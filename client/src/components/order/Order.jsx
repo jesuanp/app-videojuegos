@@ -36,19 +36,19 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
             <div className={s.containers}>
                 <label>Orden alfabetico</label>
                 <select className={s.select} ref={miRef} onChange={ordenarAlfabetico}>
-                    <option disabled selected>Seleccionar</option>
-                    <option>A - Z</option>
-                    <option>Z - A</option>
+                    <option value="Seleccionar" selected disabled>Seleccionar</option>
+                    <option value="A - Z">A - Z</option>
+                    <option value="Z - A">Z - A</option>
                 </select>
             </div>
 
             <div className={s.containers}>
                 <label>Filtrar por genero</label>
                 <select className={s.select} ref={refGenre} onChange={filterOrGenre}>
-                    <option disabled selected>Seleccionar</option>
-                    <option>Todos</option>
+                    <option value="Seleccionar" selected disabled>Seleccionar</option>
+                    <option value="Todos" >Todos</option>
                     {
-                        generos.map((e, i) => <option key={i}>{e.name}</option>)
+                        generos.map((e, i) => <option value={e.name} key={i}>{e.name}</option>)
                     }
                 </select>
             </div>
@@ -56,10 +56,10 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
             <div className={s.containers}>
                 <label>Filtrar por plataforma</label>
                 <select className={s.select} ref={refPlatforms} onChange={filterOrPlatforms}>
-                    <option disabled selected>Seleccionar</option>
-                    <option>Todos</option>
+                    <option value="Seleccionar" selected disabled>Seleccionar</option>
+                    <option value="Todos">Todos</option>
                     {
-                        plataformas.map((e, i) => <option key={i}>{e.name}</option>)
+                        plataformas.map((e, i) => <option value={e.name} key={i}>{e.name}</option>)
                     }
                 </select>
             </div>
@@ -67,18 +67,18 @@ function Order({generos, plataformas, ordenAlfabetico, buscarPorGenero, buscarPo
             <div className={s.containers}>
                 <label>Filtrar por rating</label>
                 <select className={s.select} ref={refRating} onChange={filterOrRating}>
-                    <option disabled selected>Seleccionar</option>
-                    <option>Menor a mayor</option>
-                    <option>Mayor a menor</option>
+                    <option value="Seleccionar" selected disabled>Seleccionar</option>
+                    <option value="Menor a mayor">Menor a mayor</option>
+                    <option value="Mayor a menor">Mayor a menor</option>
                 </select>
             </div>
 
             <div className={s.containers}>
                 <label>Solo base de dotos</label>
                 <select className={s.select} ref={dataBase} onChange={soloBaseDeDatos}>
-                    <option disabled selected>Seleccionar</option>
-                    <option>Si</option>
-                    <option>No</option>
+                    <option value="Seleccionar" selected disabled>Seleccionar</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
                 </select>
             </div>
         </div>

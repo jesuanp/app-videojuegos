@@ -25,7 +25,7 @@ function Details({game}){
             <div className={s.fondos}>
                 <div className={s.containerImg}>
                     {
-                        game && game.map((e, i) => <><img src={e.background_image} alt="videogames image" className={s.img}/></>)
+                        game && game.map((e, i) => <img key={i} src={e.background_image} alt="videogames image" className={s.img}/>)
                     }
                 </div>
                 <div className={s.degradado}></div>
