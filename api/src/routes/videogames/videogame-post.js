@@ -14,7 +14,7 @@ router.post('/add', async (req, res) => {
 
     // try {
 
-        if(name && description && rating && genres){
+        if(name && description && genres){
 
             var arrGenres = [];
 

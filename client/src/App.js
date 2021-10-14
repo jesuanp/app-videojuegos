@@ -32,7 +32,7 @@ function App() {
 
       <Route exact path="/app/detalles">
         <Suspense>
-          <Nav />
+          {/* <Nav /> */}
           <Details />
         </Suspense>
       </Route>

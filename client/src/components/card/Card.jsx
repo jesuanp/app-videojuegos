@@ -7,11 +7,11 @@ import s from './Card.module.css'
 import Paginado from '../paginado/Paginado';
 
 
-function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlatforms, pagina, genres, platforms}){
+function Card({searchVideogames, searchGames, gameById, getGenres, getPlatforms, pagina, genres, platforms}){
 
     const [currentPage, setCurrentPage] = useState(1)
     const [totalVideogames, setTotalVideogames] = useState(15)
-
+    
     let games = searchVideogames.slice(currentPage*totalVideogames-15, currentPage*totalVideogames)
 
     let myHistory = useHistory()
@@ -81,7 +81,6 @@ function Card({searchVideogames, game, searchGames, gameById, getGenres, getPlat
 const mapStateToProps = (store) => {
     return {
         searchVideogames: store.games,
-        game: store.nameGame,
         genres: store.genres,
         platforms: store.platforms
     }

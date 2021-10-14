@@ -9,10 +9,10 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
     let myHistory = useHistory()
 
     const [state, setState] = useState({
-        name: '',
-        released: '',
-        rating: 0,
-        background_image: null,
+        name: null,
+        released: null,
+        rating: null,
+        background_image: '',
         genres: [],
         platforms: [],
         description: ''
@@ -52,35 +52,35 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
         })
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
 
         if(state.name == ''){
             return alert("Falta el nombre")
         }
-        if(state.released == ''){
-            return alert("Falta la fecha de lanzamiento de juego")
-        }
-        if(state.rating == 0 || state.rating == '' || state.rating < 1 || state.rating > 5 || !Number(state.rating) || state.rating == NaN){
-            return alert("El rating debe ser entre 1 y 5")
-        }
-        if(state.background_image !== null){
+
+        if(state.background_image !== ''){
             if(state.background_image.slice(state.background_image.length-3) !== 'jpg'){
                 return alert("La imagen tiene que ser jpg")
             }
         }
+        if(state.background_image === '' || state.background_image === undefined){
+            state.background_image = "https://www.eleconomista.com.mx/__export/1581119523386/sites/eleconomista/img/2020/02/07/que-son-esports.jpg"
+        }
+
         if(state.description == '' || state.description.length < 15){
             if(state.description == '') return alert("Falta la descripción")
             if(state.description.length < 15) return alert("La descripcióin debe tener al menos 15 caracteres")
         }
-        if(state.genres == ''){
+        if(!state.genres.length){
             return alert("Faltan los generos")
         }
-        if(state.platforms == ''){
+        if(!state.platforms.length){
             return alert("Faltan las plataformas")
         }
-
-        await submitPost(state)
+        
+        submitPost(state)
+        console.log('HOLAAAAAAAAAAAAAAAA')
         myHistory.push("/app/home/1")
         return alert("Juego Agregado")
     }
@@ -125,14 +125,14 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
                     <div className={s.genres}>
                         <label>Generos del juego</label><br/>
                         {
-                            genres && genres.map(e => <div><input type="checkbox" name="genres" onChange={(evt)=>handleGenres(evt)} value={e.name} /><label>{e.name}</label></div>)
+                            genres && genres.map(e => <div><label><input type="checkbox" name="genres" onChange={(evt)=>handleGenres(evt)} value={e.name} />{e.name}</label></div>)
                         }
                     </div>
 
                     <div className={s.platforms}>
                         <label>Plataformas</label><br/>
                         {
-                            platforms && platforms.map(e => <div><input type="checkbox" name="platforms" onChange={(evt)=>handlePlatforms(evt)} value={e.name} /><label>{e.name}</label></div>)
+                            platforms && platforms.map(e => <div><label><input type="checkbox" name="platforms" onChange={(evt)=>handlePlatforms(evt)} value={e.name} />{e.name}</label></div>)
                         }
                     </div>
 
@@ -142,12 +142,11 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
                     </div>
 
                     <div className={s.info}>
-                        <p>Info para agregar un juego</p><br/>
-                        <p>El Rating: tiene que ser del 1 al 5</p><br/>
-                        <p>Imagen: Para que la imagen se pueda ver, hay que copiar una url de google imagenes</p>
+                        <h4>Info para agregar un juego</h4><br/>
+                        <p><span>Imagen:</span> Para que la imagen se pueda ver, hay que copiar una url de google imagenes. Si no solocas una imagen, se le pondra una por defecto.</p>
                     </div>
 
-                <button type='submit' className={s.button} >Enviar</button>
+                { state.name && state.description && state.genres.length && state.platforms.length ? <button type='submit' className={s.button} >Enviar</button> : <button className={s.buttonNoClick}>Enviar</button>}
                 </div>
 
             </form>

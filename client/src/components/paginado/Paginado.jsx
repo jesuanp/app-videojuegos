@@ -50,7 +50,7 @@ export default function Paginado({pages, searchVideogames, totalVideogames, curr
                    arrPages && arrPages.map((e, i) => i==currentPage || i+1==currentPage || i+2==currentPage?<button key={i} onClick={()=>{
                     pages(e+1);  scrollUp()
                     }} 
-                    className={s.btn}>pagina {e+1}</button>: <button className={s.btn} key={i} onClick={()=>handleClick(i)}>{unoUOtro(i)}</button>)
+                    className={s.btn}>pag {e+1}</button>: <button className={s.btn} key={i} onClick={()=>handleClick(i)}>{unoUOtro(i)}</button>)
                 }
         </div>
     )

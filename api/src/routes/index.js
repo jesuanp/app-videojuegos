@@ -5,10 +5,10 @@ const { Videogame, Genres, Plataforms, videogamesGenres, videogamesPlataforms } 
 const { v4: uuidv4 } = require('uuid');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const routerVideogames = require('./videogames/index')
-const routerGenres = require('./genres/index')
-const routerPlatforms = require('./plataforms/index')
-const routerGamesPost = require('./videogames/videogame-post')
+const routerVideogames = require('./videogames/index');
+const routerGenres = require('./genres/index');
+const routerPlatforms = require('./plataforms/index');
+const routerGamesPost = require('./videogames/videogame-post');
 
 
 const router = Router();

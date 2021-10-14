@@ -20,8 +20,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DATEONLY,
     },
     rating: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
+      type: DataTypes.DECIMAL
     },
     background_image: {
       type: DataTypes.TEXT

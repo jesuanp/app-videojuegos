@@ -7,11 +7,11 @@ export default function Inicio(){
     return (
         <div className={s.container}>
             <div>
-                <span className={s.span}>Bienvenido!!!</span>
+                <h1>Bienvenido!!!</h1>
             </div>
             <div>
-                <NavLink to='/app/home/1' className={s.NavLink}>
-                    <button className={s.button}>Home</button>
+                <NavLink to='/app/home/1'>
+                    <button className={s.button}><span>Home</span></button>
                 </NavLink>
             </div>
         </div>

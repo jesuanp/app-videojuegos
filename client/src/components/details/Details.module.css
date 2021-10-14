@@ -13,7 +13,7 @@
 }
 
 .container{
-    margin-top: 4em;
+    margin-top: 0em;
 }
 
 .containerMap{
@@ -68,7 +68,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-right: 3em;
+    right: 3em;
 }
 
 .texts p{
@@ -89,6 +89,23 @@ right: 3em;
 
 body {
     background-color: black;
+}
+
+.volver {
+    position: absolute;
+    z-index: 5;
+    top: 2.5em;
+    left: 2em;
+    background-color: transparent;
+    border: 2px solid purple;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    transition: all 0.2s;
+}
+
+.volver:hover {
+    background-color: purple;
+    cursor: pointer;
 }
 
 

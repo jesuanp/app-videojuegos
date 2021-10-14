@@ -92,7 +92,7 @@ router.get('/', async (req, res) => {
         gamesPageCuatro = datos[3].data.results;
         gamesPageCinco = datos[4].data.results;
 
-        games = games.concat(gamesPageTwo).concat(gamesPageTres).concat(gamesPageCuatro).concat(gamesPageCinco)
+        games = games.concat(gamesPageTwo).concat(gamesPageTres).concat(gamesPageCuatro).concat(gamesPageCinco);
     
         games = games.map(e => {
             return {

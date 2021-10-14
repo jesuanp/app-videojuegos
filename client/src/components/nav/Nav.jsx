@@ -18,7 +18,7 @@ export default function Nav(){
         <div>
             <nav className={s.nav}>
                 <div className={s.links}>
-                    <a href="/app/home/1" onClick={scrollUp} className={s.link}>Home</a>
+                    <NavLink to="/app/home/1" onClick={scrollUp} className={s.link}>Home</NavLink>
                 </div>
 
                 <div className={s.links}>

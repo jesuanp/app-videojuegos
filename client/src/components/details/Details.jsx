@@ -10,6 +10,7 @@ function Details({game}){
             {
                 game && game.map(e => 
                 <div key={e.id} className={s.map}>
+                    <NavLink to="/app/home/1"><button className={s.volver}>Volver</button></NavLink>
                     <h1>{e.name}</h1>
                     <div className={s.texts}>
                         <p><span>Rating:</span>  {e.rating}</p>
