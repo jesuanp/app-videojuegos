@@ -51,14 +51,22 @@
   background-size: cover;
 }*/
 
-body 
+/*body 
 {
 background-image: url('./components/images/2-27534_imagenes-de-minecraft-hd-4k.jpg');
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-position: center center;
 background-size: cover;
-}
+}*/
+
+/*body{
+  background-image: url('./components/images/2-27534_imagenes-de-minecraft-hd-4k.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+}*/
 
 p{
   color: white;

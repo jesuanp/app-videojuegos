@@ -1,4 +1,17 @@
-import { buscar, buscarPorNombre, buscarNombrePorId, dataBase, obtenerGeneros, obtenerPlataformas, gameByGenre, gameByRating, alphabeticalOrder, gameByPlatform, postSubmit } from './actions'
+import {
+    buscar,
+    buscarPorNombre,
+    buscarNombrePorId,
+    dataBase,
+    obtenerGeneros,
+    obtenerPlataformas,
+    gameByGenre,
+    gameByRating,
+    alphabeticalOrder,
+    gameByPlatform,
+    postSubmit,
+    deleteGame,
+    deleteGameReducer } from './actions'
 
 const initialStore = {
     todosLosJuegos: [],
@@ -8,7 +21,8 @@ const initialStore = {
     database: [],
     genres: [],
     platforms: [],
-    resPost: []
+    resPost: [],
+    deleteApproved: null
 }
 
 const reducer = (state=initialStore, action) => {
@@ -62,12 +76,12 @@ const reducer = (state=initialStore, action) => {
             games: action.descAsc === 'Mayor a menor' ? 
             action.payload.sort((a, b)=>{
                 if(a.rating > b.rating) return -1;
-                else if (a.rating < b.rating) 1;
+                else if (a.rating < b.rating) return 1;
                 else return
             })
             : action.payload.sort((a, b)=>{
                 if(a.rating < b.rating) return -1;
-                else if (a.rating > b.rating) 1;
+                else if (a.rating > b.rating) return 1;
                 else return
             })
         }
@@ -77,12 +91,12 @@ const reducer = (state=initialStore, action) => {
             games: action.descAsc == 'Z - A' ?
             action.payload.sort((a, b)=>{
                 if(a.name > b.name) return -1;
-                else if (a.name < b.name) 1;
+                else if (a.name < b.name) return 1;
                 else return
             })
             : action.payload.sort((a, b)=>{
                 if(a.name < b.name) return -1;
-                else if (a.name > b.name) 1;
+                else if (a.name > b.name) return 1;
                 else return
             })
         }
@@ -103,7 +117,19 @@ const reducer = (state=initialStore, action) => {
 
         case postSubmit: return {
             ...state,
-            resPost: action.postgame
+            games: [action.postgame.message].concat(state.games),
+            todosLosJuegos: [action.postgame.message].concat(state.todosLosJuegos)
+        }
+
+        case deleteGame: return {
+            ...state,
+            deleteApproved: action.payload
+        }
+
+        case deleteGameReducer: return {
+            ...state,
+            games: state.games.filter(e => e.id !== action.payload),
+            todosLosJuegos: state.todosLosJuegos.filter(e => e.id !== action.payload)
         }
 
         default: return state;

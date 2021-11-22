@@ -9,6 +9,7 @@ const routerVideogames = require('./videogames/index');
 const routerGenres = require('./genres/index');
 const routerPlatforms = require('./plataforms/index');
 const routerGamesPost = require('./videogames/videogame-post');
+const routerDeleteGame = require('./videogames/deleteVideogame');
 
 
 const router = Router();
@@ -25,6 +26,7 @@ router.use('/api/videogames', routerVideogames)
 router.use('/api/genres', routerGenres)
 router.use('/api/platforms', routerPlatforms)
 router.use('/api/videogame', routerGamesPost)
+router.use('/api/videogame', routerDeleteGame)
 
 
 

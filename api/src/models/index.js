@@ -24,6 +24,9 @@ module.exports = (sequelize) => {
     },
     background_image: {
       type: DataTypes.TEXT
+    },
+    db: {
+      type: DataTypes.BOOLEAN
     }
   });
 

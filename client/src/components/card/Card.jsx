@@ -9,25 +9,25 @@ import Paginado from '../paginado/Paginado';
 
 function Card({searchVideogames, searchGames, gameById, getGenres, getPlatforms, pagina, genres, platforms}){
 
-    const [currentPage, setCurrentPage] = useState(1)
+    if(searchVideogames[0]?.message == 'false') var gameDB = true
 
+    const [currentPage, setCurrentPage] = useState(1)
+    
     const totalVideogames = 15
     
     let games = searchVideogames.slice(currentPage*totalVideogames-15, currentPage*totalVideogames)
-
+    
     let myHistory = useHistory()
-
+    
     if(currentPage === 1){
         myHistory.push(`/app/home/${currentPage}`)
     }
-
-    let actualPage;
-
+    
     function pages(num){
         setCurrentPage(num)
         myHistory.push(`/app/home/${num}`)
     }
-
+    
     useEffect(()=>{
         if(!games.length){
             searchGames()
@@ -37,7 +37,7 @@ function Card({searchVideogames, searchGames, gameById, getGenres, getPlatforms,
         if(!platforms.length) getPlatforms();
         pagina = 2
     }, [])
-
+        
     const scrollUp = () => {
         let currentScroll = document.documentElement.scrollTop;
         if (currentScroll > 0) {
@@ -46,6 +46,8 @@ function Card({searchVideogames, searchGames, gameById, getGenres, getPlatforms,
         }
     }
 
+    if(gameDB && searchVideogames[0]?.message == 'false') return (<div><h2>No hay videojuegos en la base de datos</h2></div>)
+        
     return(
         <>
         <div className={s.cards}>
@@ -53,7 +55,7 @@ function Card({searchVideogames, searchGames, gameById, getGenres, getPlatforms,
                 games.length ? games.map(e => 
                 
                 <div className={s.card} key={e.id} onClick={()=>gameById(e.id)}>
-                    <NavLink to="/app/detalles" className={s.NavLink} onClick={scrollUp}>
+                    <NavLink to={`/app/${e.id}`} className={s.NavLink} onClick={scrollUp}>
                         <div>
                             <p className={s.name}>{e.name}</p>
                         </div>
@@ -70,7 +72,7 @@ function Card({searchVideogames, searchGames, gameById, getGenres, getPlatforms,
                         </div>
                     </NavLink>
                 </div>
-                ): <img src={gif} alt="Gif de cargando" className={s.gif} />
+                ): <div className={s.loader}></div>
             }
             
         </div>

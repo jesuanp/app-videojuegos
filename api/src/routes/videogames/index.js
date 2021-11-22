@@ -143,7 +143,7 @@ router.get('/database', async (req, res) => {
 
         return res.json(gamesDB)
     }
-    res.json({message: 'No hay juegos en la base de datos'})
+    else res.json([{message: 'false'}])
 })
 
 router.get('/:id', async (req, res) => {
@@ -168,7 +168,7 @@ router.get('/:id', async (req, res) => {
                 }]
             })
     
-            res.json(juego)
+            return res.json(juego)
         }
 
         

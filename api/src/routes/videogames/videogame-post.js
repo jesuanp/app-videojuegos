@@ -63,17 +63,19 @@ router.post('/add', async (req, res) => {
                         description,
                         released,
                         rating,
-                        background_image
+                        background_image,
+                        db: true
                     })
                     
                     createdGame.addPlatforms(arrPlatforms.length > 0 ? arrPlatforms : platforms)
                     createdGame.addGenres(arrGenres.length > 0 ? arrGenres : genres)
         
             
-                    return res.json({message: createdGame,
+                    return res.json({message: {
+                        ...createdGame.dataValues, 
                         platforms: arrPlatforms.length > 0 ? arrPlatforms : platforms,
                         genres: arrGenres.length > 0 ? arrGenres : genres
-                    })
+                    }})
                 }
             }
     

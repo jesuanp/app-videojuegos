@@ -22,3 +22,19 @@
     align-items: center;
     margin-top: 10em;
 }
+
+.fondoLanding 
+{
+background-image: url('../images/2-27534_imagenes-de-minecraft-hd-4k.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center center;
+background-size: cover;
+position: absolute;
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: -1;
+}

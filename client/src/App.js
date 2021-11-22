@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from 'react';
+import React, {Suspense} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Card from './components/card/Card';
 import Nav from './components/nav/Nav';
@@ -14,36 +14,38 @@ function App() {
   return (
     <Router>
     <div className="App">
+      <Switch>
 
-      <Route exact path="/">
-        <Suspense>
-          <Inicio />
-        </Suspense>
-      </Route>
+        <Route exact path="/">
+          <Suspense>
+            <Inicio />
+          </Suspense>
+        </Route>
 
-      <Route exact path="/app/home/:pagina">
-        <Suspense>
-          <Nav />
-          <InputSearch />
-          <Order />
-          <Card />
-        </Suspense>
-      </Route>
+        <Route exact path="/app/home/:pagina">
+          <Suspense>
+            <Nav />
+            <InputSearch />
+            <Order />
+            <Card />
+          </Suspense>
+        </Route>
 
-      <Route exact path="/app/detalles">
-        <Suspense>
-          {/* <Nav /> */}
-          <Details />
-        </Suspense>
-      </Route>
+        <Route exact path="/app/post">
+          <Suspense>
+            <Nav />
+            <Form />
+          </Suspense>
+        </Route>
+        
+        <Route exact path="/app/:id">
+          <Suspense>
+            {/* <Nav /> */}
+            <Details />
+          </Suspense>
+        </Route>
 
-      <Route exact path="/app/post">
-        <Suspense>
-          <Nav />
-          <Form />
-        </Suspense>
-      </Route>
-
+      </Switch>
     </div>
     </Router>
   );

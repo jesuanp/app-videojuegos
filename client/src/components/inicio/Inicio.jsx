@@ -6,6 +6,7 @@ export default function Inicio(){
 
     return (
         <div className={s.container}>
+            <div className={s.fondoLanding}></div>
             <div>
                 <h1>Bienvenido!!!</h1>
             </div>

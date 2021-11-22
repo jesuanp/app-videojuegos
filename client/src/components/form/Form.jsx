@@ -80,9 +80,8 @@ function Form({submitPost, genres, platforms, resPost, getGenres, getPlatforms})
         }
         
         submitPost(state)
-        console.log('HOLAAAAAAAAAAAAAAAA')
+        alert("Juego Agregado")
         myHistory.push("/app/home/1")
-        return alert("Juego Agregado")
     }
 
     useEffect(()=>{
