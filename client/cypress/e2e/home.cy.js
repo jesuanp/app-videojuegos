@@ -1,9 +1,9 @@
 describe('test home', () => {
 
-    describe.only('testing the selects', () => {
+    describe('testing the selects', () => {
         
-        it.only('testing the landing page button', () => {
-            cy.visit(Cypress.env('LANDING_PAGE_URL'))
+        it('testing the landing page button', () => {
+            cy.visit('/')
             cy.contains('Home').click()
         })
         
@@ -52,7 +52,7 @@ describe('test home', () => {
     describe('add a game to the database', () => {
 
         before(() => {
-            cy.visit(Cypress.env('POST_GAME_URL'))
+            cy.visit('/app/post')
         })
     
         it('Create new Video Game', () => {
@@ -70,7 +70,7 @@ describe('test home', () => {
     
             // Aqui envia el juego creado y verifica que existe
             cy.get('button[type="submit"]').click()
-            cy.visit(Cypress.env('URL'))
+            cy.visit('/app/home/1')
             cy.contains('Test', {timeout: 6000})
         })
 
@@ -80,11 +80,11 @@ describe('test home', () => {
         })
 
         it('delete the game from the database', () => {
-            cy.visit(Cypress.env('URL'))
+            cy.visit('/app/home/1')
             cy.contains('Test').click({force: true})
             cy.contains('button', 'Eliminar videojuego').click()
             cy.contains('button', 'Si').click()
-            cy.url().should('include', Cypress.env('URL'))
+            cy.url().should('include', Cypress.env('HOME_URL'))
         })
     })
 })
