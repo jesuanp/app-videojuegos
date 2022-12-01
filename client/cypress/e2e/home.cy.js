@@ -1,10 +1,10 @@
 describe('test home', () => {
 
-    describe('testing the selects', () => {
+    describe.only('testing the selects', () => {
         
-        it('testing the landing page button', () => {
+        it.only('testing the landing page button', () => {
             cy.visit(Cypress.env('LANDING_PAGE_URL'))
-            cy.get('button').click()
+            cy.contains('Home').click()
         })
         
         it('Filter by alphabetical order', () => {
